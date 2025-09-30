@@ -39,6 +39,8 @@ The server listens on all interfaces (0.0.0.0).
 
 Clients can connect both from localhost and from other machines in the network.
 
+After starting, the server listens for incoming TCP connections on `127.0.0.1` (localhost) at port `9000` by default.
+
 # 📡 API (JSON over TCP)
 Communication is done over plain TCP.
 
