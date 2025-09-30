@@ -2,9 +2,12 @@
 #include "Session.hpp"
 #include <iostream>
 
-Server::Server(asio::io_context& io_context, short port)
-    : io_context_(io_context),
-    acceptor_(io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port)) {
+Server::Server(asio::io_context& io_context, short port) : io_context_(io_context),
+acceptor_(io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port)) {
+
+    auto ep = acceptor_.local_endpoint();
+    std::cout << "Server listening on " << ep.address().to_string() << ":" << ep.port() << std::endl;
+
     do_accept();
 }
 
@@ -17,11 +20,6 @@ void Server::leave(std::shared_ptr<Session> session) {
     std::lock_guard<std::mutex> lk(sessions_mutex_);
     sessions_.erase(session);
 }
-
-//void Server::broadcast(const std::string& msg) {
-//    std::lock_guard<std::mutex> lk(sessions_mutex_);
-//    for (auto& s : sessions_) s->deliver(msg);
-//}
 
 void Server::broadcast(const std::string& msg) {
     std::vector<std::shared_ptr<Session>> sessions_copy;
