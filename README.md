@@ -10,8 +10,8 @@ It allows multiple clients to manage a shared to-do list in real time:
 # 📦 Dependencies
 
 * C++17 or newer
-* Asio (standalone)
-* nlohmann/json
+* [Asio (standalone)](https://github.com/chriskohlhoff/asio)
+* [nlohmann/json](https://github.com/nlohmann/json)
 
 Both libraries are header-only, no .lib or .dll required.
 
@@ -27,11 +27,13 @@ Both libraries are header-only, no .lib or .dll required.
 
 # 🚀 Run
 
-./Server <port>
+./Server [<port>]
 
 Example:
 
-./Server 9000
+* ./Server
+
+* ./Server 9000
 
 The server listens on all interfaces (0.0.0.0).
 
